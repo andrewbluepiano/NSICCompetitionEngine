@@ -14,13 +14,13 @@ A SQL DB matching the structure posted in SQLdbStructure. You can tweak and use 
 rdserver = localhost<br>
 rdusername = <br>
 rdpassword = <br>
-rddbname = DBNAME<br>
+rddbname = NSIC2020<br>
 
 [writing]<br>
 wrserver = localhost<br>
 wrusername = <br>
 wrpassword = <br>
-wrdbname = DBNAME<br>
+wrdbname = NSIC2020<br>
 
 - Run a search for "PATH" over all files. You will need to update those. 
 
