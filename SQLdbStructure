@@ -1,0 +1,231 @@
+-- phpMyAdmin SQL Dump
+-- https://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Sep 09, 2019 at 09:30 PM
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `NSIC2020`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gradedsvc`
+--
+
+CREATE TABLE IF NOT EXISTS `gradedsvc` (
+  `svcid` int(3) NOT NULL,
+  `service` text NOT NULL,
+  `scenarionum` int(11) NOT NULL,
+  `points` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `participants`
+--
+
+CREATE TABLE IF NOT EXISTS `participants` (
+  `partid` int(3) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `fname` varchar(30) NOT NULL,
+  `lname` varchar(30) NOT NULL,
+  `shirtsize` varchar(10) NOT NULL,
+  `teamid` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questions`
+--
+
+CREATE TABLE IF NOT EXISTS `questions` (
+  `questionid` int(3) NOT NULL,
+  `questionnum` int(3) NOT NULL,
+  `question` text NOT NULL,
+  `value` int(10) NOT NULL,
+  `submission` int(3) NOT NULL COMMENT '0 = no submissions, 1 = text response, 2= file submission',
+  `scenarionum` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `scenario`
+--
+
+CREATE TABLE IF NOT EXISTS `scenario` (
+  `scenarionum` int(3) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `hidden` tinyint(1) NOT NULL,
+  `fullBonus` int(5) NOT NULL,
+  `brief` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tasks`
+--
+
+CREATE TABLE IF NOT EXISTS `tasks` (
+  `taskid` int(3) NOT NULL,
+  `task` text NOT NULL,
+  `tasknum` int(10) NOT NULL,
+  `scenarionum` int(11) NOT NULL,
+  `points` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teams`
+--
+
+CREATE TABLE IF NOT EXISTS `teams` (
+  `teamid` int(3) NOT NULL,
+  `tname` varchar(100) NOT NULL,
+  `school` varchar(100) NOT NULL,
+  `addcomments` text NOT NULL,
+  `diet` text NOT NULL,
+  `asl` int(1) NOT NULL,
+  `score` int(10) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `compuser` varchar(30) NOT NULL,
+  `comppass` varchar(255) NOT NULL,
+  `teamid` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `gradedsvc`
+--
+ALTER TABLE `gradedsvc`
+  ADD PRIMARY KEY (`svcid`),
+  ADD KEY `scenario_fk` (`scenarionum`);
+
+--
+-- Indexes for table `participants`
+--
+ALTER TABLE `participants`
+  ADD PRIMARY KEY (`partid`),
+  ADD KEY `teamid` (`teamid`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`questionid`),
+  ADD KEY `scenario_fk` (`scenarionum`);
+
+--
+-- Indexes for table `scenario`
+--
+ALTER TABLE `scenario`
+  ADD PRIMARY KEY (`scenarionum`);
+
+--
+-- Indexes for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD PRIMARY KEY (`taskid`),
+  ADD KEY `scenario_fk` (`scenarionum`);
+
+--
+-- Indexes for table `teams`
+--
+ALTER TABLE `teams`
+  ADD PRIMARY KEY (`teamid`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`compuser`),
+  ADD UNIQUE KEY `compuser` (`compuser`),
+  ADD KEY `teamid_fk` (`teamid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `gradedsvc`
+--
+ALTER TABLE `gradedsvc`
+  MODIFY `svcid` int(3) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `participants`
+--
+ALTER TABLE `participants`
+  MODIFY `partid` int(3) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `questionid` int(3) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `scenario`
+--
+ALTER TABLE `scenario`
+  MODIFY `scenarionum` int(3) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `taskid` int(3) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `teams`
+--
+ALTER TABLE `teams`
+  MODIFY `teamid` int(3) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `gradedsvc`
+--
+ALTER TABLE `gradedsvc`
+  ADD CONSTRAINT `svc_scenario_fk` FOREIGN KEY (`scenarionum`) REFERENCES `scenario` (`scenarionum`);
+
+--
+-- Constraints for table `participants`
+--
+ALTER TABLE `participants`
+  ADD CONSTRAINT `teamid` FOREIGN KEY (`teamid`) REFERENCES `teams` (`teamid`);
+
+--
+-- Constraints for table `questions`
+--
+ALTER TABLE `questions`
+  ADD CONSTRAINT `scenario_fk` FOREIGN KEY (`scenarionum`) REFERENCES `scenario` (`scenarionum`);
+
+--
+-- Constraints for table `tasks`
+--
+ALTER TABLE `tasks`
+  ADD CONSTRAINT `task_scenario_fk` FOREIGN KEY (`scenarionum`) REFERENCES `scenario` (`scenarionum`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `teamid_fk` FOREIGN KEY (`teamid`) REFERENCES `teams` (`teamid`);
