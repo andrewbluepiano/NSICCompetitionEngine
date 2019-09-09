@@ -28,7 +28,9 @@ wrdbname = NSIC2020<br>
 <br>
 That should be it, it's not very pretty right now on the backend, but it's functional. 
 <br>
+
 ### To-Do's
+
 Switch from using .txt files to using .jsons to make things less messy. <br>
 Switch from looking for a static ADMIN username to checking the users username against a DB of admins. <br>
 Hide the admin menu if the logged in user is not an admin <br>
