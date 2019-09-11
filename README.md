@@ -37,3 +37,4 @@ Hide the admin menu if the logged in user is not an admin <br>
 Add file upload capabilities <br>
 Add in functionality to include notes when entering a custom number of points to score a team. <br>
 Record time at which teams complete things in the DB <br>
+Add in signoff request button in competitor interface
