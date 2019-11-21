@@ -11,18 +11,6 @@ A SQL DB matching the structure posted in SQLdbStructure. You can tweak and use 
 ## Files to configure
 - A config.ini file that you will need to fill out with appropriate SQL account information. This is the format(vars) that the posted code looks for. 
 
-[read only] <br>
-rdserver = localhost<br>
-rdusername = <br>
-rdpassword = <br>
-rddbname = NSIC2020<br>
-
-[writing]<br>
-wrserver = localhost<br>
-wrusername = <br>
-wrpassword = <br>
-wrdbname = NSIC2020<br>
-
 - Run a search for "PATH" over all files. You will need to update those and create the relevant paths. 
 <br>
 <br>
