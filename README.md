@@ -16,14 +16,3 @@ A SQL DB matching the structure posted in SQLdbStructure. You can tweak and use 
 <br>
 That should be it, it's not very pretty right now on the backend, but it's functional. 
 <br>
-
-### To-Do's
-
-Switch from using .txt files to using .jsons to make things less messy. <br>
-Switch from looking for a static ADMIN username to checking the users username against a DB of admins. <br>
-Hide the admin menu if the logged in user is not an admin <br>
-Add file upload capabilities <br>
-Add in functionality to include notes when entering a custom number of points to score a team. <br>
-Record time at which teams complete things in the DB <br>
-Add in signoff request button in competitor interface <br>
-Device tracking
