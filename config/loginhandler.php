@@ -39,10 +39,10 @@ if($stmt = $mysqli->prepare("SELECT * FROM users WHERE compuser=?")){
                 $_SESSION['username'] = $_POST['username'];
                 $_SESSION['login_info'] = ['start_time' => time(),'ip' => $_SERVER['REMOTE_ADDR'],'sess_valid' => true];
                 // Go to secured page
-                header('Location: scoreboard.php');
+                header('Location: ../scoreboard.php');
                 die("True - login successful");
             }else{
-                header('Location: login.php');
+                header('Location: ../login.php');
                 // Keep the same as the one above to prevent blind SQL attacks on passwords
                 die('False - Username or password was invalid');
             }
@@ -54,4 +54,3 @@ if($stmt = $mysqli->prepare("SELECT * FROM users WHERE compuser=?")){
     die("ERR: Issue preparing statement: " . mysqli_error($mysqli));
 }
 ?>
-
