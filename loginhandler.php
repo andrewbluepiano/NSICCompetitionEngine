@@ -1,29 +1,57 @@
-<!-- Copyright (c) 2019 Andrew Afonso, just leave my name in comments if you reuse -->
 <?php
-	session_start();
-	$config = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/PATH/config.ini"); 	
-	mysql_connect($config['rdserver'], $config['rdusername'], $config['rdpassword']) or DIE('Unable to connect to NAS, check if SQL server is enabled');
-	mysql_select_db($config['rddbname']) or DIE('Database is not available!');
-	// query DB for username and password entery given by input. Note output from MD5 function passed as password:
-	$login = mysql_query("SELECT * FROM users WHERE (compuser = '" . mysql_real_escape_string($_POST['username']) . "') and (comppass = '" . mysql_real_escape_string(md5($_POST['password'])) . "')");
-	// Check username and password match
-	if (mysql_num_rows($login) == 1) {
-		// Set username session variable
-		$_SESSION['username'] = $_POST['username'];
-		//Go to secured page
-		header('Location: scoreboard.php');
-	}
- 
+// Author: Andrew Afonso
+
+// Parameters passed from form
+$username = $_POST['username'];
+$passwd = $_POST['password'];
+
+// Parse config file for sensitive credentials
+$config = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/../private/config.ini");
+
+// Create SQL server connection
+$mysqli = new mysqli($config['rdserver'], $config['rdusername'], $config['rdpassword'], $config['rddbname']);
+
+// Check connection
+if ($mysqli -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
+
+if($stmt = $mysqli->prepare("SELECT * FROM users WHERE compuser=?")){
+    if($stmt->bind_param("s", $username)){
+        if(!$stmt->execute()){
+            die("ERR: Issue executing prepared statement: " . mysqli_error($mysqli));
+        }
+        
+        if($returned = $stmt->get_result()){
+            $row = $returned->fetch_assoc();
+            if($returned->num_rows != 1){
+                // Keep this, and the matching one later the same to prevent blind SQL attacks attacks on passwords
+                die("False - Username or password was invalid");
+            }
+            
+            if($row['comppass'] === md5($passwd)){
+                // Successful Login, Set session variables
+                session_unset();
+                session_destroy();
+                $sess_id = session_start();
+                session_regenerate_id(true);
+                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['login_info'] = ['start_time' => time(),'ip' => $_SERVER['REMOTE_ADDR'],'sess_valid' => true];
+                // Go to secured page
+                header('Location: scoreboard.php');
+                die("True - login successful");
+            }else{
+                header('Location: login.php');
+                // Keep the same as the one above to prevent blind SQL attacks on passwords
+                die('False - Username or password was invalid');
+            }
+        }
+    }else{
+        die("ERR: Issue binding prepared statement: " . mysqli_error($mysqli));
+    }
+}else{
+    die("ERR: Issue preparing statement: " . mysqli_error($mysqli));
+}
 ?>
-<html>
-	<head>
-		<title>Authorization Error</title>
-	</head>
-	<body>
-		<p>
-		Your username or password was incorrect
-		</b>
-		<br>
-		Retry: <a href="login.php">login</a> </p>
-	</body>
-</html>
+
