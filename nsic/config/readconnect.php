@@ -1,10 +1,9 @@
-<!-- Copyright (c) 2019 Andrew Afonso, just leave my name in comments if you reuse -->
 <?php
 	function read_connect() {
 		static $readconn;
 
 		if(!isset($readconn)) {
-			$config = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/PATH/config.ini"); 
+			$config = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/someconfig.ini"); 
 			$readconn = mysqli_connect($config['rdserver'], $config['rdusername'], $config['rdpassword'], $config['rddbname']);
 		}
 

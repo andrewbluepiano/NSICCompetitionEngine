@@ -1,12 +1,18 @@
-<!-- Copyright (c) 2019 Andrew Afonso, just leave my name in comments if you reuse -->
 <?php
-	// Inialize session
-	session_start();
-	if (isset($_SESSION['username'])){
-		header('Location: scoreboard.php');
-	}
+// Author: Andrew Afonso
+
+// Inialize session
+session_start();
+
+if (isset($_SESSION['username'])){
+    
+    include_once("config/session_validate.php");
+    
+    header('Location: competition.php');
+}
+
 ?>
-<html>
+<!doctype html>
 <head>
 	<title>NSIC Login</title>
 	<?php include("config/head.php"); ?>
@@ -16,7 +22,7 @@
 	<div class="vcenter text">
 		<div class="vcenterholder center">
 			<h1>Competitor Login</h1>
-			<form method="POST" action="loginhandler.php">
+			<form method="POST" action="config/loginhandler.php">
 				<p>Username: <input id="softfield" type="text" name="username" size="20"><br>
 				Password: <input id="softfield" type="password" name="password" size="20"><br>
 				(We use cookies) <br>
@@ -28,4 +34,3 @@
 	<?php include("config/footer.php"); ?>
 </body>
 </html>
- 

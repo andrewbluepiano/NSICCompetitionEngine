@@ -1,5 +1,4 @@
-<!-- Copyright (c) 2019 Andrew Afonso, just leave my name in comments if you reuse -->
-<!doctype htmlL>
+<!doctype html>
 <html>
 <head>
 	<title>NSIC by NextHop</title>
@@ -145,7 +144,7 @@
 					<li><a href="https://www.raspberrypi.org/products/raspberry-pi-3-model-b/">Raspberry Pi 3's</a></li>
 					<li><a href="https://www.newegg.com/Product/Product.aspx?Item=N82E16820147372">250GB Samsung SSDs</a></li>
 					<li><a href="http://www.oreilly.com/pub/au/4810#Books">Networking & SysAdmin Books</a></li>
-					<li><a href="https://nexthop.network/nsic/competition">NSIC 2020 Competition Engine</a></li>
+					<li><a href="/nsic/login">NSIC 2020 Competition Engine</a></li>
 				</ul>
 			</div>
 		</article>

@@ -1,4 +1,3 @@
-<!-- Copyright (c) 2019 Andrew Afonso, just leave my name in comments if you reuse -->
 <?php
 	require_once('writeconnect.php');
 	$bad = 0;

@@ -1,4 +1,3 @@
-<!-- Copyright (c) 2019 Andrew Afonso, just leave my name in comments if you reuse -->
 <?php
 	session_start();
 
@@ -8,6 +7,7 @@
 ?>
 <!DOCTYPE HTML>
 <html>
+<!-- Yo, its Andrew Here -->
 	<head>
 		<title>NSIC 2020 Registration</title>
 		<meta name="description" content="NSIC, a sysadmin competition by NextHop" />

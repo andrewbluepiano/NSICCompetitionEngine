@@ -1,11 +1,10 @@
-<!-- Copyright (c) 2019 Andrew Afonso, just leave my name in comments if you reuse -->
 <?php
 	require_once('writeconnect.php');
 	$teamid = $_REQUEST['team'];
 	$questionid = $_REQUEST['question'];
 	$scenarioid = $_REQUEST['scenario'];
 	$answer = filter_input(INPUT_POST, 'answer');
-	$storage = $_SERVER["DOCUMENT_ROOT"]."/PATH/questions". $teamid .".txt";
+	$storage = $_SERVER["DOCUMENT_ROOT"]."/questions". $teamid .".txt";
 	echo "<meta http-equiv=\"Refresh\" content=\"0; url=https://nexthop.network/nsic/scenario.php?number=". $scenarioid ."\">";
 
 	$rewrite = array();

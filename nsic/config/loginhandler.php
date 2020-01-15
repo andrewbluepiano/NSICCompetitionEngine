@@ -1,7 +1,7 @@
 <?php
 // Author: Andrew Afonso
 
-// Parameters passed from form
+// Parameters from form
 $username = $_POST['username'];
 $passwd = $_POST['password'];
 
@@ -17,6 +17,7 @@ if ($mysqli -> connect_errno) {
   exit();
 }
 
+// Uses bound statements
 if($stmt = $mysqli->prepare("SELECT * FROM users WHERE compuser=?")){
     if($stmt->bind_param("s", $username)){
         if(!$stmt->execute()){
@@ -26,7 +27,8 @@ if($stmt = $mysqli->prepare("SELECT * FROM users WHERE compuser=?")){
         if($returned = $stmt->get_result()){
             $row = $returned->fetch_assoc();
             if($returned->num_rows != 1){
-                // Keep this, and the matching one later the same to prevent blind SQL attacks attacks on passwords
+                header('Location: ../login.php');
+                // Keep this, and the matching message later the same to prevent blind SQL attacks attacks on passwords
                 die("False - Username or password was invalid");
             }
             
@@ -43,7 +45,7 @@ if($stmt = $mysqli->prepare("SELECT * FROM users WHERE compuser=?")){
                 die("True - login successful");
             }else{
                 header('Location: ../login.php');
-                // Keep the same as the one above to prevent blind SQL attacks on passwords
+                // Keep message the same as the one above to prevent blind SQL attacks on passwords
                 die('False - Username or password was invalid');
             }
         }

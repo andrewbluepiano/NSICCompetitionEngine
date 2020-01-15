@@ -1,16 +1,12 @@
-<!-- Copyright (c) 2019 Andrew Afonso, just leave my name in comments if you reuse -->
 <?php
-	session_start();
+// Author: Andrew Afonso
+session_start();
 
-	if (!isset($_SESSION['username'])) {
-		header('Location: login');
-	}
-	
-	if (isset($_SESSION['username']) && $_SESSION['username'] != 'ADMIN') {
-		header('Location: accessdenied');
-	}
+include_once("config/session_validate.php");
+include_once("config/admin_validate.php");
+
 ?>
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 	<head>
 		<?php include("config/head.php"); ?>

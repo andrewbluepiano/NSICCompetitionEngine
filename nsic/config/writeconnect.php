@@ -1,10 +1,9 @@
-<!-- Copyright (c) 2019 Andrew Afonso, just leave my name in comments if you reuse -->
 <?php
 	function write_connect() {
 		static $writeconn;
 
 		if(!isset($writeconn)) {
-			$config = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/PATH/config.ini"); 
+			$config = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/someconfig.ini"); 
 			$writeconn = mysqli_connect($config['wrserver'], $config['wrusername'], $config['wrpassword'], $config['wrdbname']);
 		}
 

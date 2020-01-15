@@ -1,12 +1,11 @@
-<!-- Copyright (c) 2019 Andrew Afonso, just leave my name in comments if you reuse -->
 <?php
-	session_start();
+// Author: Andrew Afonso
+session_start();
 
-	if (!isset($_SESSION['username'])) {
-		header('Location: login');
-	}
+include_once("config/session_validate.php");
+
 ?>
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 	<head>
 		<title>NSIC 2020 Scoreboard</title>

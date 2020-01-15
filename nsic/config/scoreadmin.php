@@ -1,9 +1,7 @@
-<!-- Copyright (c) 2019 Andrew Afonso, just leave my name in comments if you reuse -->
 <?php
 	require_once('writeconnect.php');
 	$manscore = filter_input(INPUT_POST, 'manscore');
 	$teamid = filter_input(INPUT_POST, 'teamset');
-	$teamtoscoreid = filter_input(INPUT_POST, 'teamselect');
 	echo "<meta http-equiv=\"Refresh\" content=\"3; url=https://nexthop.network/nsic/admin\">";
 	
 	if(isset($_POST['setscore'])){
@@ -16,8 +14,16 @@
 			". $writeconn->error."</p>";
 		}
 	}
-	if(isset($_POST['scoring'])){
-		
-	}
 	$writeconn->close();
+	/*else{
+		$sqlone = "INSERT INTO scoreboard (tname) SELECT tname FROM teams WHERE tname NOT IN (SELECT tname FROM scoreboard);";
+		if ($writeconn->query($sqlone)){
+			echo "<p>New participants have been inserted sucessfully</p>";
+		}
+		else{
+			echo "<p>Error: ". $sqlone ."
+			". $writeconn->error."</p>";
+		}
+		$writeconn->close();
+	}*/
 ?>

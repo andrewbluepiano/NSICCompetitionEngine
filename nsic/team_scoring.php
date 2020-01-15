@@ -1,16 +1,12 @@
-<!-- Copyright (c) 2019 Andrew Afonso, just leave my name in comments if you reuse -->
 <?php
-	session_start();
+// Author: Andrew Afonso
+session_start();
 
-	if (!isset($_SESSION['username'])) {
-		header('Location: login');
-	}
-	
-	if (isset($_SESSION['username']) && $_SESSION['username'] != 'ADMIN') {
-		header('Location: accessdenied');
-	}
+include_once("config/session_validate.php");
+include_once("config/admin_validate.php");
+
 ?>
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 	<head>
 		<?php include("config/head.php"); ?>
@@ -51,7 +47,7 @@
 								$watcher = 0;
 								echo "<form method=\"post\" action=\"config/points.php?team=". $teamid ."&task=". $task['taskid'] ."&scenario=". $scenarionum ."\">
 								<div class=\"scoring_columns\"><div class=\"col1\"><li> ".$task['task'] ."</div>";
-								$taskstorage = $_SERVER["DOCUMENT_ROOT"]."PATH/tasks". $teamid .".txt";
+								$taskstorage = $_SERVER["DOCUMENT_ROOT"]."/../private/competition/tasks". $teamid .".txt";
 								if(file_exists($taskstorage)){
 										$alines = file($taskstorage);
 										foreach($alines as $aline){
@@ -76,7 +72,7 @@
 								$ticker = 0;
 								echo "<form method=\"post\" action=\"config/points.php?team=". $teamid ."&service=". $svc['svcid'] ."&scenario=". $scenarionum ."\">
 								<div class=\"scoring_columns\"><div class=\"col1\"><li> ".$svc['service']."</div>";
-								 $svcstorage = $_SERVER["DOCUMENT_ROOT"]."/PATH/services". $teamid .".txt";
+								 $svcstorage = $_SERVER["DOCUMENT_ROOT"]."/../private/competition/services". $teamid .".txt";
 								 if(file_exists($svcstorage)){
 										$clines = file($svcstorage);
 										foreach($clines as $cline){
@@ -102,8 +98,8 @@
 								echo "<form method=\"post\" action=\"config/points.php?team=". $teamid ."&question=". $question['questionid'] ."&scenario=". $scenarionum ."\">
 								<div class=\"scoring_columns\"><div class=\"col1\"><li>Question:". $question['question'] ."<br>Value: ". $question['value'] ."";
 								
-								$storage = $_SERVER["DOCUMENT_ROOT"]."/PATH/questions". $teamid .".txt";
-								$questscorestorage = $_SERVER["DOCUMENT_ROOT"]."/PATH/questionscore". $teamid .".txt";
+								$storage = $_SERVER["DOCUMENT_ROOT"]."/../private/competition/questions". $teamid .".txt";
+								$questscorestorage = $_SERVER["DOCUMENT_ROOT"]."/../private/competition/questionscore". $teamid .".txt";
 
 								if(file_exists($storage)){
 									$lines = file($storage);
