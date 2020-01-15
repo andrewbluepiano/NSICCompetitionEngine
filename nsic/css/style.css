@@ -44,8 +44,8 @@ h1 {
 header {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	height: 130px;
+	align-items: flex-end;
+	height: 100px;
 }
 
 header h1 {
@@ -418,12 +418,17 @@ footer {
 	}
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 	h1 {
 		font-size: 25px;
 	}
+    
 	h2 {
 		font-size: 18px;
 	}
+    
+    #NSICHamburgToggle {
+        top: 30px;
+        left: 30px;
+    }
 }
-
