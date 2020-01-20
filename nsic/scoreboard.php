@@ -10,7 +10,7 @@ include_once("config/session_validate.php");
 	<head>
 		<title>NSIC 2020 Scoreboard</title>
 		<meta name="description" content="NSIC 2020 Scoreboard" />
-		<meta http-equiv="refresh" content="15">
+		<!-- <meta http-equiv="refresh" content="15"> -->
         <?php include("config/head.php"); ?>
 	</head>
 	<body>

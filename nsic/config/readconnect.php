@@ -3,7 +3,7 @@
 		static $readconn;
 
 		if(!isset($readconn)) {
-			$config = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/someconfig.ini"); 
+			$config = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/../private/config.ini"); 
 			$readconn = mysqli_connect($config['rdserver'], $config['rdusername'], $config['rdpassword'], $config['rddbname']);
 		}
 

@@ -1,3 +1,7 @@
+<?php
+// Author: Andrew Afonso
+session_start();
+?>
 <div id="smallWrap">
 <div id="smallWrapContent">
 <header>
@@ -9,10 +13,22 @@
 		<span></span>
 		<span></span>
 		<ul id="NSICMenu">
-		  <a href="competition"><li>Competition</li></a>
-		  <a href="scoreboard"><li>Scoreboard</li></a>
-		  <a href="admin"><li>Admin</li></a>
-		  <a href="logout.php" class="NSICLogout" ><li>Logout</li></a>
+            <?php
+            if(session_status() != PHP_SESSION_ACTIVE || !isset($_SESSION['username'])){
+                echo "<a href=\"registration\"><li>Register</li></a>";
+                echo "<a href=\"login\"><li>Login</li></a>";
+            }
+            
+            if(session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['username'])){
+                echo "<a href=\"competition\"><li>Competition</li></a>";
+                echo "<a href=\"scoreboard\"><li>Scoreboard</li></a>";
+                if($_SESSION['login_info']['isAdmin'] === 1){
+                    echo "<a href=\"admin\"><li>Admin</li></a>";
+                }
+                echo "<a class=\"NSICLogout\" href=\"logout\"><li>Logout</li></a>";
+            }
+            
+            ?>
 		</ul>
   </section>
 </nav>

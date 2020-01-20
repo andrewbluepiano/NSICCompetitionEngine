@@ -1,7 +1,7 @@
 <?php
 // Author: Andrew Afonso
-// If a valid user, but not the admin, redirect. To be replaced with something DB based.
-if(isset($_SESSION['username']) && $_SESSION['username'] != 'ADMIN') {
+// If a valid user, but not an NSICAdmin, redirect. To be replaced with something DB based.
+if($_SESSION['login_info']['isAdmin'] != 1) {
     header('Location: accessdenied');
 }
 ?> 

@@ -5,9 +5,9 @@ require_once('writeconnect.php');
 $teamid = $_REQUEST['team'];
 $scenarioid = $_REQUEST['scenario'];
 $questscore = filter_input(INPUT_POST, 'custquestscore');
-$svcstorage = $_SERVER["DOCUMENT_ROOT"]."/services". $teamid .".txt";
-$questscorestorage = $_SERVER["DOCUMENT_ROOT"]."/questionscore". $teamid .".txt";
-$taskstorage = $_SERVER["DOCUMENT_ROOT"]."/tasks". $teamid .".txt";
+$svcstorage = $_SERVER["DOCUMENT_ROOT"]."/../private/competition/services". $teamid .".txt";
+$questscorestorage = $_SERVER["DOCUMENT_ROOT"]."/../private/competition/questionscore". $teamid .".txt";
+$taskstorage = $_SERVER["DOCUMENT_ROOT"]."/../private/competition/tasks". $teamid .".txt";
 echo "<meta http-equiv=\"Refresh\" content=\"0; url=/nsic/team_scoring.php?team=". $teamid ."&scenario=". $scenarioid ."\">";
 
 if(isset($_POST['svcscore'])){

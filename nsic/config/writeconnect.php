@@ -3,7 +3,7 @@
 		static $writeconn;
 
 		if(!isset($writeconn)) {
-			$config = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/someconfig.ini"); 
+			$config = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/../private/config.ini"); 
 			$writeconn = mysqli_connect($config['wrserver'], $config['wrusername'], $config['wrpassword'], $config['wrdbname']);
 		}
 

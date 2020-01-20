@@ -22,6 +22,5 @@ if((session_status() == PHP_SESSION_ACTIVE)){
     
     // Update session active time
     $_SESSION['login_info']['start_time'] = time();
-    
 }
 ?> 

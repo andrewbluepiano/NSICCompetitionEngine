@@ -1,3 +1,4 @@
+/* NSIC Competition Engine CSS*/
 html, body {
 	height: 100%;
 	margin: 0;
@@ -49,7 +50,7 @@ header {
 }
 
 header h1 {
-	margin: 0 auto;
+	margin: 0 auto 20px auto;
 	display: block;
 	text-align: center;
 }
@@ -60,6 +61,10 @@ header h1 {
 
 .scoring h3 {
 	padding: 10px 0;
+}
+
+fieldset {
+    border: none;
 }
 
 /* Nav Stuff */
@@ -177,6 +182,10 @@ a.NSICLogout {
 	line-height: 30px;
 }
 
+.text p, .normLines {
+    line-height: 20px;
+}
+
 .right {
 	text-align: right;
 }
@@ -247,6 +256,10 @@ a.NSICLogout {
 	margin: 0;
 }
 
+.holder {
+    display: inline;
+}
+
 #loginbtn {
 	background-color: #ebeceb;
 	padding: 10px 20px;
@@ -298,8 +311,26 @@ a.NSICLogout {
 	-webkit-appearance: none;
 }
 
+#softbtn:hover {
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    color: #F58522;
+}
+
 #numinput {
 	width: 50px;
+}
+
+.noul {
+    list-style-type: none;
+}
+
+.noul li {
+    padding: 5px;
+}
+
+.admin input[type="number"] {
+   width: 100px;
 }
 
 #orange_button {
@@ -311,6 +342,18 @@ a.NSICLogout {
     font-size: 16px;
     margin: 5px;
     cursor: pointer;
+}
+
+/* Registration */
+.registration legend {
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+.registration p {
+    margin: 10px 0;
 }
 
 
@@ -398,7 +441,7 @@ footer {
 		width: 100%;
 	}
 	.col{
-		text-align:center;
+		text-align: center;
 	}
 	.vcenter h1 {
 		position: relative;
@@ -416,6 +459,17 @@ footer {
 	#answerfield {
 		width: 50%;
 	}
+    .wrap {
+        padding: 0 10px;
+    }
+    .registration {
+        text-align: center;
+    }
+
+    .holder {
+        display: block;
+        padding: 2px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -428,7 +482,7 @@ footer {
 	}
     
     #NSICHamburgToggle {
-        top: 30px;
-        left: 30px;
+        top: 20px;
+        left: 20px;
     }
 }

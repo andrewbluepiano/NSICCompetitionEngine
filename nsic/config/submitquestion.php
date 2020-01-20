@@ -4,7 +4,7 @@
 	$questionid = $_REQUEST['question'];
 	$scenarioid = $_REQUEST['scenario'];
 	$answer = filter_input(INPUT_POST, 'answer');
-	$storage = $_SERVER["DOCUMENT_ROOT"]."/questions". $teamid .".txt";
+	$storage = $_SERVER["DOCUMENT_ROOT"]."/../private/competition/questions". $teamid .".txt";
 	echo "<meta http-equiv=\"Refresh\" content=\"0; url=https://nexthop.network/nsic/scenario.php?number=". $scenarioid ."\">";
 
 	$rewrite = array();
