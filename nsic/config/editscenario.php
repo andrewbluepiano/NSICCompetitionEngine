@@ -1,5 +1,8 @@
 <?php
 // Author: Andrew Afonso
+// Disabled due to insecurities
+
+/*
 require_once('writeconnect.php');
 $scenarioname = filter_input(INPUT_POST, 'scenarioname');
 $scenarionum = $_REQUEST['scenarionum'];
@@ -149,4 +152,5 @@ if(isset($_POST['deletequest'])){
         ". $writeconn->error."</p>";
     }
 }
+*/
 ?>
