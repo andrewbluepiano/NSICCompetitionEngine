@@ -1,20 +1,23 @@
 <?php
+// Author: Andrew Afonso
+// Backend for volunteer registration
+
+// Provides the SQL connection with write permissions to NSIC DB.
 require_once('writeconnect.php');
+
+// Post vars
 $addcomments = mysqli_real_escape_string( $writeconn, $_POST['vol_comments']);
 $asl = mysqli_real_escape_string( $writeconn, $_POST['vol_asl']);
-
 $fname = mysqli_real_escape_string( $writeconn, $_POST['vol_fname']);
 $lname = mysqli_real_escape_string( $writeconn, $_POST['vol_lname']);
 $email = mysqli_real_escape_string( $writeconn, $_POST['vol_email']);
 $shirt = mysqli_real_escape_string( $writeconn, $_POST['vol_shirt']);
 
-
-$netskill = mysqli_real_escape_string( $writeconn, $_POST['netskill']);
-$sysskill = mysqli_real_escape_string( $writeconn, $_POST['sysskill']);
-
+// Serializes the two check box arrays for SQL storage
 $area_ser = serialize($_POST['vol_area']);
 $days_ser = serialize($_POST['vol_days']);
 
+// Inserts the data
 if($stmt = $writeconn->prepare("INSERT INTO volunteers (fname, lname, email, addcomments, asl, shirtsize, areas, days) VALUES (?,?,?,?,?,?,?,?)")){
     if($stmt->bind_param("ssssisss", $fname, $lname, $email, $addcomments, $asl, $shirt, $area_ser, $days_ser)){
         if(!$stmt->execute()){
@@ -26,6 +29,8 @@ if($stmt = $writeconn->prepare("INSERT INTO volunteers (fname, lname, email, add
 }else{
     die("ERR: Issue preparing statement: " . mysqli_error($writeconn));
 }
+
+// Closes the SQL connection
 $writeconn->close();
 
 // JS That uses an iFrame to load the getCal file that downloads the calendar file.
