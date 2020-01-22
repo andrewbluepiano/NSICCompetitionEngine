@@ -13,7 +13,7 @@
 	<!-- Banner -->
 	<section id="NSICbanner">
 		<img class="logo" src="/assets/img/NSIClogo.png" /><br />
-		<h2>March 30th & 31st, 2019</h2>
+		<h2>April 4th & 5th, 2020</h2>
 	</section>
 
 
@@ -27,8 +27,8 @@
 
 			<div class="col">
 			<div class="text">
-				<p>NSIC is a competition for college students of all experience levels. Students get to build a corporate topology from the ground up.</p>
-				<p>Participants will be racing the clock, each other, and overcoming real world issues being thrown at them.</p>
+				<p>NSIC is a competition for college students of all experience levels. Students get to build a corporate topology from the ground up.
+                <br><br>Participants will be racing the clock, each other, and overcoming real world issues being thrown at them.</p>
 			</div>
 			</div>
 		</article>
@@ -41,12 +41,15 @@
 			<h2>The details</h2>
 		
 			<div class="text">
-				<p>NSIC is the Networking & Systems Infrastructure Competition hosted by RIT's Networking & Systems Administration club, <a href="http://nexthop.network" target="_blank">NextHop</a>. The event will be held at <a href="http://rit.edu" target="_blank">RIT</a> in Rochester, NY on March 30th & 31st, 2019. </p>
+				<p>NSIC is the Networking & Systems Infrastructure Competition hosted by RIT's Networking & Systems Administration club, <a href="http://nexthop.network" target="_blank">NextHop</a>. The event will be held at <a href="http://rit.edu" target="_blank">RIT</a> in Rochester, NY on April 4-5 2020. </p>
 				<p>Teams must have 5 members to compete. The only requirement is that all members must be current college students. The registration fee for each team will be $50. This includes participation in the event, t-shirts, four meals, and <a href="#prizes">prizes</a> for the winning teams.</p>
+                <p>You can register at: https://nexthop.network/nsic/registration </p>
 			</div>
 		</article>
 	</div>
 
+    <?php
+    /*
 	<div class="main_color">
 		<article class="standard">
 			<h1 class="center">Schedule</h1>
@@ -79,7 +82,20 @@
 		</article>
 	</div>
 
-	<div class="alt_color">
+ 
+    <div class="main_color">
+        <article class="center standard">
+            <h1>NSIC 2020 Sponsors</h1>
+            <h2>Silver</h2>
+            Paychex
+            <h2>Bronze</h2>
+            Cisco
+        </article>
+    </div>
+     */
+     ?>
+     
+	<div class="main_color">
 		<article class="center">
 		
 			<div class="standard">
@@ -131,7 +147,7 @@
 		</article>
 	</div>
 
-	<div class="main_color">
+	<div class="alt_color">
 		<article class="two_columns center">
 			<div class="col vcenter">
 				<h1>Previous Prizes</h1>

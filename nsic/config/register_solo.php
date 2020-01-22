@@ -23,5 +23,13 @@ if($stmt = $writeconn->prepare("INSERT INTO solo_unplaced (fname, lname, email, 
     die("ERR: Issue preparing statement (Solo): " . mysqli_error($writeconn));
 }
 $writeconn->close();
-header('Location: ../');
+
+// JS That uses an iFrame to load the getCal file that downloads the calendar file.
+echo '<iframe id="my_iframe" style="display:none;"></iframe>';
+echo '<script>';
+echo "document.getElementById('my_iframe').src = \"getCal.php\";";
+echo '</script>';
+
+// Redirects to the store to pay registration. Refresh must at least be 1.
+header('Refresh: 1;url=https://campusgroups.rit.edu/store?store_id=562');
 ?>

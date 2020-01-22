@@ -16,6 +16,8 @@ session_start();
             <?php
             if(session_status() != PHP_SESSION_ACTIVE || !isset($_SESSION['username'])){
                 echo "<a href=\"registration\"><li>Register</li></a>";
+                echo "<a href=\"volunteer\"><li>Volunteer</li></a>";
+                echo "<a href=\"https://campusgroups.rit.edu/store?store_id=562\"><li>Pay Fee</li></a>";
                 echo "<a href=\"login\"><li>Login</li></a>";
             }
             

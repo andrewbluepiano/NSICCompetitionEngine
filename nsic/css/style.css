@@ -198,6 +198,11 @@ a.NSICLogout {
 	text-align: center;
 }
 
+.center_object {
+    margin: 0 auto;
+    display: block;
+}
+
 .vcenter{
 	display: table-cell;
 	vertical-align: middle;
@@ -238,7 +243,7 @@ a.NSICLogout {
   margin-left: 35px;
 }
 
-.questions form, .admin form {
+.questions form {
 	line-height: 25px;
 	margin-left: 35px;
 	padding-top: 5px;
@@ -260,7 +265,7 @@ a.NSICLogout {
     display: inline;
 }
 
-#loginbtn {
+.loginbtn {
 	background-color: #ebeceb;
 	padding: 10px 20px;
 	font-size: 14px;
@@ -272,29 +277,29 @@ a.NSICLogout {
 	margin-top: 10px;
 }
 
-#loginbtn:hover {
+.loginbtn:hover {
 	transition: all .4s ease;
 	-webkit-transition: all .4s ease;
 	color: #545454;
 }
 
-#loginfield {
+.loginfield {
 	border: none;
 	-webkit-appearance: none;
 	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.19);
 }
 
-#softfield, #softselect {
+.softfield, .softselect {
 	padding: 5px 10px;
 	border: 2px solid #ebeceb;
 	border-radius: 5px;
 }
 
-#softfield {
+.softfield {
 	-webkit-appearance: none;
 }
 
-#answerfield {
+.answerfield {
 	padding: 7px 10px;
 	border: 2px solid #ebeceb;
 	border-radius: 5px;
@@ -302,7 +307,31 @@ a.NSICLogout {
 	-webkit-appearance: none;
 }
 
-#softbtn {
+
+.btn_one:hover {
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    color: #F58522;
+}
+
+.btn_one {
+    background-color: #ebeceb;
+    font-weight: 650;
+    padding: 9px 15px;
+    font-size: 15px;
+    text-decoration: none;
+    border: none;
+    -webkit-appearance: none;
+    border-radius: 10px;
+}
+
+.softbtn:hover {
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    color: #F58522;
+}
+
+.softbtn {
 	background-color: #ebeceb;
 	font-weight: 700;
 	padding: 9px 15px;
@@ -311,13 +340,13 @@ a.NSICLogout {
 	-webkit-appearance: none;
 }
 
-#softbtn:hover {
+.softbtn:hover {
     transition: all .4s ease;
     -webkit-transition: all .4s ease;
     color: #F58522;
 }
 
-#numinput {
+.numinput {
 	width: 50px;
 }
 
@@ -333,7 +362,7 @@ a.NSICLogout {
    width: 100px;
 }
 
-#orange_button {
+.orange_button {
     background-color: #F58522;
     border: 0;
 	border-radius: 4px;
@@ -354,6 +383,10 @@ a.NSICLogout {
 
 .registration p {
     margin: 10px 0;
+}
+
+.registration .two_columns .col {
+    position: relative;
 }
 
 
@@ -465,7 +498,6 @@ footer {
     .registration {
         text-align: center;
     }
-
     .holder {
         display: block;
         padding: 2px;

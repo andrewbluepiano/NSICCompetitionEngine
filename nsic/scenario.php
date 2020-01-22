@@ -81,8 +81,8 @@ include_once("config/session_validate.php");
 					if($quest['submission']==1){
 						echo "<form method=\"post\" action=\"config/submitquestion.php?team=". $teamid['teamid'] ."&question=". $quest['questionid'] ."&scenario=". $scenarionum ."\">
 						". $quest['question'] ."
-						<br><span><input id=\"answerfield\" type=\"text\" name=\"answer\" placeholder=\"Answer question here\">
-						<input id=\"softbtn\" type=\"submit\" name=\"answerbtn\" value=\"Submit Answer\"></span>
+						<br><span><input class=\"answerfield\" type=\"text\" name=\"answer\" placeholder=\"Answer question here\">
+						<input class=\"softbtn\" type=\"submit\" name=\"answerbtn\" value=\"Submit Answer\"></span>
 						</form>";
 					}
 				} 

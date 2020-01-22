@@ -35,7 +35,7 @@ include_once("config/admin_validate.php");
 		<form method="post" action="config/editscenario.php?scenarionum=<?php echo $scenarionum; ?>">
 			
 			<div class="center">
-				<p>Enter new title here for title change: <input id="softfield" type="text" name="scenarioname" placeholder="Enter Scenario Name"></p>
+				<p>Enter new title here for title change: <input class="softfield" type="text" name="scenarioname" placeholder="Enter Scenario Name"></p>
 			</div>
 			
 			<section class="two_columns">
@@ -79,7 +79,7 @@ include_once("config/admin_validate.php");
 			</section>
 			
 			<div class="center">
-				<input id="softbtn" type="submit" name="scenarioedit" value="Update Scenario">
+				<input class="softbtn" type="submit" name="scenarioedit" value="Update Scenario">
 			</div>
 			
 			<h2 class="center">Tasks</h2>
@@ -99,17 +99,17 @@ include_once("config/admin_validate.php");
 			
 				<div class="col">
 					<p>Create task: 
-						<input id="softfield" type="number" name="taskindnum" placeholder="Task Number">
-						<input id="numinput" type="number" name="taskpoints" placeholder="Points">
+						<input class="softfield" type="number" name="taskindnum" placeholder="Task Number">
+						<input class="numinput" type="number" name="taskpoints" placeholder="Points">
 						<br>
 						<textarea id="softfield" name="taskcontent" placeholder="Enter Task Content" rows="8" cols="40"></textarea>
 						<br>
-						<input id="softbtn" type="submit" name="createtask" value="Create">
+						<input class="softbtn" type="submit" name="createtask" value="Create">
 					<p>
 					
 					
 					<p>Delete task:
-						<select id="softselect"  name="tasksel">
+						<select class="softselect"  name="tasksel">
 							<?php 
 							$gettasks = "SELECT taskid, tasknum FROM tasks WHERE scenarionum='$scenarionum' ORDER BY tasknum DESC;";
 							$tasks=$readconn->query($gettasks); 
@@ -118,7 +118,7 @@ include_once("config/admin_validate.php");
 							}
 							?>
 						</select>
-						<input id="softbtn" type="submit" name="deletetask" value="Delete">
+						<input class="softbtn" type="submit" name="deletetask" value="Delete">
 					</p>
 				</div>
 			</section>
@@ -140,14 +140,14 @@ include_once("config/admin_validate.php");
 			
 				<div class="col">
 					<p>Create service: 
-						<input id="softfield" type="text" name="newsvc" placeholder="Enter Service Name">
-						<input id="numinput" type="number" name="svcpoints" placeholder="Points">
-						<input id="softbtn" type="submit" name="createsvc" value="Create">
+						<input class="softfield" type="text" name="newsvc" placeholder="Enter Service Name">
+						<input class="numinput" type="number" name="svcpoints" placeholder="Points">
+						<input class="softbtn" type="submit" name="createsvc" value="Create">
 					<p>
 					
 					
 					<p>Delete service:
-						<select id="softselect" name="svcsel">
+						<select class="softselect" name="svcsel">
 							<?php 
 							$getgraded = "SELECT svcid, service FROM gradedsvc WHERE scenarionum='$scenarionum';";
 							$services=$readconn->query($getgraded); 
@@ -156,7 +156,7 @@ include_once("config/admin_validate.php");
 							}
 							?>
 						</select>
-						<input id="softbtn" type="submit" name="deletesvc" value="Delete">
+						<input class="softbtn" type="submit" name="deletesvc" value="Delete">
 					</p>
 				</div>
 			</section>
@@ -186,7 +186,7 @@ include_once("config/admin_validate.php");
 			
 				<div class="col">
 					<p>Create Question or Select Existing
-						<select id="softselect" name="questtoupdate">
+						<select class="softselect" name="questtoupdate">
 							<option value="New">New</option>
 							<?php 
 							$sqltwo = mysqli_query($readconn, "SELECT questionnum, questionid FROM questions WHERE scenarionum='$scenarionum'");
@@ -210,9 +210,9 @@ include_once("config/admin_validate.php");
 						<textarea id="softfield" name="questiontext" placeholder="Text" rows="8" cols="40"></textarea>
 					</p>
 					
-					<input id="softbtn" type="submit" name="createquest" value="Create Question">
-					<input id="softbtn" type="submit" name="updatequest" value="Update Question">
-					<input id="softbtn" type="submit" name="deletequest" value="Delete Question">
+					<input class="softbtn" type="submit" name="createquest" value="Create Question">
+					<input class="softbtn" type="submit" name="updatequest" value="Update Question">
+					<input class="softbtn" type="submit" name="deletequest" value="Delete Question">
 				</div>
 			</section>
 		</form>

@@ -58,7 +58,7 @@ include_once("config/admin_validate.php");
 										}
 									}
 									if($watcher==0){
-										echo "<div class=\"col2\"><input id=\"orange_button\" type=\"submit\" name=\"taskscore\" value=\"POINTS!\"></form></li></div></div>";
+										echo "<div class=\"col2\"><input class=\"orange_button\" type=\"submit\" name=\"taskscore\" value=\"POINTS!\"></form></li></div></div>";
 									}
 							}
 						?>
@@ -83,7 +83,7 @@ include_once("config/admin_validate.php");
 										}
 									}
 									if($ticker==0){
-										echo "<div class=\"col2\"><input id=\"orange_button\" type=\"submit\" name=\"svcscore\" value=\"POINTS!\"></form></li></div></div>";
+										echo "<div class=\"col2\"><input class=\"orange_button\" type=\"submit\" name=\"svcscore\" value=\"POINTS!\"></form></li></div></div>";
 									}
 							}
 						?>
@@ -119,7 +119,7 @@ include_once("config/admin_validate.php");
 									}
 								}
 								if($tracker==0){
-									echo "<div class=\"col2\"><input type=\"number\" name=\"custquestscore\" placeholder=\"Enter Score\"><input id=\"orange_button\" type=\"submit\" name=\"questscore\" value=\"Score!\"></form></li></div></div>";
+									echo "<div class=\"col2\"><input type=\"number\" name=\"custquestscore\" placeholder=\"Enter Score\"><input class=\"orange_button\" type=\"submit\" name=\"questscore\" value=\"Score!\"></form></li></div></div>";
 								}
 								/*echo "</form></li>";*/
 							}

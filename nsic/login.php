@@ -23,10 +23,10 @@ if (isset($_SESSION['username'])){
 		<div class="vcenterholder center">
 			<h1>Competitor Login</h1>
 			<form method="POST" action="config/loginhandler.php">
-				<p>Username: <input id="softfield" type="text" name="username" size="20"><br>
-				Password: <input id="softfield" type="password" name="password" size="20"><br>
+				<p>Username: <input class="softfield" type="text" name="username" size="20"><br>
+				Password: <input class="softfield" type="password" name="password" size="20"><br>
 				(We use cookies) <br>
-				<input id="loginbtn" type="submit" value="Login">
+				<input class="loginbtn" type="submit" value="Login">
 				</p>
 			</form>
 		</div>

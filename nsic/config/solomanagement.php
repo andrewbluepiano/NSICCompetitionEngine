@@ -6,8 +6,6 @@ if(!empty($_POST['teamset'])) {
         if(isset( $result_explode[1])){
             $sql = mysqli_query($writeconn, "SELECT * FROM solo_unplaced WHERE uid LIKE");
             
-            
-            
         }
     }
 }

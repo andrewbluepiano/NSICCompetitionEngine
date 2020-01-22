@@ -12,22 +12,23 @@
         <ul class="noul normLines">
             <li>You may register a team with 4 or 5 Members ( If you register 4 we will fill the 5th slot with one of the individuals )</li>
             <li>Individuals searching for a team can register at end of page</li>
-            <li>To pay the registration fee, please go use this link: https://campusgroups.rit.edu/store?store_id=562</li>
+            <li>After registering, you will be redirected to campusgroups to pay the registration fee. This is also linked to the side.</li>
             <li>For more information about the competition please visit: nexthop.network/nsic</li>
-            </ul>
+            <li>NSIC is April 4-5 2020</li>
+        </ul>
 
         <form method="post" action="config/register_team.php">
             <fieldset>
                 <legend>Team Registration</legend>
                 <div class="two_columns">
                     <div class="col">
-                        <label>Team Name:<input id="softfield" type="text" name="teamname" required></label>
+                        <label>Team Name:<input class="softfield" type="text" name="teamname" required></label>
                         <br>
-                        <label>Desired Login ID (One string):<input id="softfield" type="text" name="loginid" required></label>
+                        <label>Desired Login ID (One string):<input class="softfield" type="text" name="loginid" required></label>
                         <br>
-                        <label>School:<input id="softfield" type="text" name="school" required></label>
+                        <label>School:<input class="softfield" type="text" name="school" required></label>
                         <br>
-                        <label>Dietary Restrictions <input id="softfield" type="text" name="diet"></label>
+                        <label>Dietary Restrictions <input class="softfield" type="text" name="diet"></label>
                         <br>
                         <label>Interpreter Needed
                         <input type="radio" name="asl" value="1">Yes
@@ -38,17 +39,15 @@
                         <br>
                         <textarea id="softfield" name="addcomments" cols="40" rows="10"></textarea>
                         <br>
-                        
-                        <input id="softbtn" type="submit" value="Submit">
-                        
                     </div>
+                    
                     <div class="col">
                         Member 1:
                         <br>
-                        <label>Name <input id="softfield" type="text" name="fnameone" placeholder="First" required></label>
-                        <input id="softfield" type="text" name="lnameone" placeholder="Last" required>
+                        <label>Name <input class="softfield" type="text" name="fnameone" placeholder="First" required></label>
+                        <input class="softfield" type="text" name="lnameone" placeholder="Last" required>
                         <br>
-                        <label>Email <input id="softfield" type="email" name="emailone" required></label>
+                        <label>Email <input class="softfield" type="email" name="emailone" required></label>
                         <br>
                         <label>Shirt Size
                         <select name="shirtone">
@@ -63,10 +62,10 @@
                         
                         Member 2:
                         <br>
-                        <label>Name <input id="softfield" type="text" name="fnametwo" placeholder="First" required></label>
-                        <input id="softfield" type="text" name="lnametwo" placeholder="Last" required>
+                        <label>Name <input class="softfield" type="text" name="fnametwo" placeholder="First" required></label>
+                        <input class="softfield" type="text" name="lnametwo" placeholder="Last" required>
                         <br>
-                        <label>Email <input id="softfield" type="email" name="emailtwo" required></label>
+                        <label>Email <input class="softfield" type="email" name="emailtwo" required></label>
                         <br>
                         <label>Shirt Size
                         <select name="shirttwo">
@@ -81,10 +80,10 @@
                         
                         Member 3:
                         <br>
-                        <label>Name <input id="softfield" type="text" name="fnamethree" placeholder="First" required></label>
-                        <input id="softfield" type="text" name="lnamethree" placeholder="Last" required>
+                        <label>Name <input class="softfield" type="text" name="fnamethree" placeholder="First" required></label>
+                        <input class="softfield" type="text" name="lnamethree" placeholder="Last" required>
                         <br>
-                        <label>Email <input id="softfield" type="email" name="emailthree" required></label>
+                        <label>Email <input class="softfield" type="email" name="emailthree" required></label>
                         <br>
                         <label>Shirt Size
                         <select name="shirtthree">
@@ -99,10 +98,10 @@
                         
                         Member 4:
                         <br>
-                        <label>Name <input id="softfield" type="text" name="fnamefour" placeholder="First" required></label>
-                        <input id="softfield" type="text" name="lnamefour" placeholder="Last" required>
+                        <label>Name <input class="softfield" type="text" name="fnamefour" placeholder="First" required></label>
+                        <input class="softfield" type="text" name="lnamefour" placeholder="Last" required>
                         <br>
-                        <label>Email <input id="softfield" type="email" name="emailfour" required></label>
+                        <label>Email <input class="softfield" type="email" name="emailfour" required></label>
                         <br>
                         <label>Shirt Size
                         <select name="shirtfour">
@@ -117,10 +116,10 @@
                         
                         Member 5:
                         <br>
-                        <label>Name <input id="softfield" type="text" name="fnamefive" placeholder="First"></label>
-                        <input id="softfield" type="text" name="lnamefive" placeholder="Last">
+                        <label>Name <input class="softfield" type="text" name="fnamefive" placeholder="First"></label>
+                        <input class="softfield" type="text" name="lnamefive" placeholder="Last">
                         <br>
-                        <label>Email <input id="softfield" type="email" name="emailfive"></label>
+                        <label>Email <input class="softfield" type="email" name="emailfive"></label>
                         <br>
                         <label>Shirt Size
                         <select name="shirtfive">
@@ -133,6 +132,9 @@
                         </label>
                     </div>
                 </div>
+
+                <input class="btn_one center_object" type="submit" value="Register">
+                
             </fieldset>
         </form>
         <br><br>
@@ -141,10 +143,10 @@
             <fieldset>
                 <legend>Individual Registration</legend>
                 
-                <label>Name <input id="softfield" type="text" name="solofname" placeholder="First" required></label>
-                <input id="softfield" type="text" name="sololname" placeholder="Last" required>
+                <label>Name <input class="softfield" type="text" name="solofname" placeholder="First" required></label>
+                <input class="softfield" type="text" name="sololname" placeholder="Last" required>
                 <br>
-                <label>Email <input id="softfield" type="email" name="soloemail" required></label>
+                <label>Email <input class="softfield" type="email" name="soloemail" required></label>
                 <br>
                 <label>Shirt Size
                 <select name="soloshirt">
@@ -176,9 +178,9 @@
                 </select>
                 </label>
                 <br>
-                <label>Additional Comments <input id="softfield" type="textarea" name="solocomments"></label>
+                <label>Additional Comments <input class="softfield" type="textarea" name="solocomments"></label>
                 <br>
-                <label>Dietary Restrictions <input id="softfield" type="text" name="solodiet"></label>
+                <label>Dietary Restrictions <input class="softfield" type="text" name="solodiet"></label>
                 <br>
                 <label>Interpreter Needed
                 <input type="radio" name="soloasl" value="1">Yes
@@ -187,7 +189,7 @@
                 
                 <br>
                 
-                <input id="softbtn" type="submit" value="Submit">
+                <input class="btn_one" type="submit" value="Submit">
                 
             </fieldset>
         </form>
