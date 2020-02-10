@@ -28,6 +28,8 @@
                         <br>
                         <label>School:<input class="softfield" type="text" name="school" required></label>
                         <br>
+                        <label>Team Contact Email:<input class="softfield" type="email" name="teamEmail" required></label>
+                        <br>
                         <label>Dietary Restrictions <input class="softfield" type="text" name="diet"></label>
                         <br>
                         <label>Interpreter Needed

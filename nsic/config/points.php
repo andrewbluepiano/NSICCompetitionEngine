@@ -3,7 +3,6 @@
 // Disabled due to insecurities
 require_once('writeconnect.php');
 
-/*
 $teamid = $_REQUEST['team'];
 $scenarioid = $_REQUEST['scenario'];
 $questscore = filter_input(INPUT_POST, 'custquestscore');

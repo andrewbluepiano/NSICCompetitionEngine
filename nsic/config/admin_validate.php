@@ -1,6 +1,6 @@
 <?php
 // Author: Andrew Afonso
-// If a valid user, but not an NSICAdmin, redirect. To be replaced with something DB based.
+// Checks if the user is an admin. This is determined when the user begins their session. 
 if($_SESSION['login_info']['isAdmin'] != 1) {
     header('Location: accessdenied');
 }

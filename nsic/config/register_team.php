@@ -8,6 +8,7 @@ $addcomments = mysqli_real_escape_string( $writeconn, $_POST['addcomments']);
 $diet = mysqli_real_escape_string( $writeconn, $_POST['diet']);
 $asl = mysqli_real_escape_string( $writeconn, $_POST['asl']);
 $loginid = mysqli_real_escape_string( $writeconn, $_POST['loginid']);
+$teamEmail = mysqli_real_escape_string( $writeconn, $_POST['teamEmail']);
 
 $fnameone = mysqli_real_escape_string( $writeconn, $_POST['fnameone']);
 $lnameone = mysqli_real_escape_string( $writeconn, $_POST['lnameone']);
@@ -34,8 +35,8 @@ $lnamefive = mysqli_real_escape_string( $writeconn, $_POST['lnamefive']);
 $emailfive = mysqli_real_escape_string( $writeconn, $_POST['emailfive']);
 $shirtfive = mysqli_real_escape_string( $writeconn, $_POST['shirtfive']);
 
-if($stmt = $writeconn->prepare("INSERT INTO teams (tname, school, addcomments, diet, asl) VALUES (?,?,?,?,?)")){
-    if($stmt->bind_param("ssssi", $teamname, $teamschool, $addcomments, $diet, $asl)){
+if($stmt = $writeconn->prepare("INSERT INTO teams (tname, school, addcomments, diet, asl, email) VALUES (?,?,?,?,?,?)")){
+    if($stmt->bind_param("ssssis", $teamname, $teamschool, $addcomments, $diet, $asl, $teamEmail)){
         if(!$stmt->execute()){
             die("ERR: Issue executing prepared statement (Team): " . mysqli_error($writeconn));
         }
@@ -126,6 +127,7 @@ if($fnamefive != ""){
 // JS That uses an iFrame to load the getCal file that downloads the calendar file.
 echo '<iframe id="my_iframe" style="display:none;"></iframe>';
 echo '<script>';
+echo 'alert("You will now be redirected to pay the registration fee.");';
 echo "document.getElementById('my_iframe').src = \"getCal.php\";";
 echo '</script>';
 

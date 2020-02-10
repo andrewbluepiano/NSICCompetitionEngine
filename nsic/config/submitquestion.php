@@ -1,36 +1,56 @@
 <?php
 // Author: Andrew Afonso
-// Disabled due to insecurities
+// Submits scenario question responses
 
-/*
+// Session setup verification
+session_start();
+require_once('session_validate.php');
+
+// Import SQL write connection object
 require_once('writeconnect.php');
-$teamid = $_REQUEST['team'];
-$questionid = $_REQUEST['question'];
-$scenarioid = $_REQUEST['scenario'];
-$answer = filter_input(INPUT_POST, 'answer');
-$storage = $_SERVER["DOCUMENT_ROOT"]."/../private/competition/questions". $teamid .".txt";
-echo "<meta http-equiv=\"Refresh\" content=\"0; url=https://nexthop.network/nsic/scenario.php?number=". $scenarioid ."\">";
 
-$rewrite = array();
-if(file_exists($storage)){
-    $lines = file($storage);
-    //$raw = file_get_contents($storage);
-    //$lines =  unserialize($raw);
-    //echo print_r($lines, true);
-    foreach($lines as $line){
-        //echo substr($line, 0, strlen($questionid));
-        //echo "<br>";
-        //echo $questionid;
-        if(substr($line, 0, strlen($questionid)) != $questionid){
-            array_push($rewrite, $line);
-        }
-    }
+$teamid = $_SESSION['teamID'];
+$questionid = $_POST['question'];
+$scenarioid = $_POST['scenario'];
+$answer = filter_input(INPUT_POST, 'answer');
+
+// Load teams responses
+$sqlGetResponses = mysqli_query( $writeconn, "SELECT responses FROM teams WHERE teamid='$teamid';" );
+$responses = $sqlGetResponses->fetch_assoc();
+$responses = $responses['responses'];
+
+// Create response data array with updated answer
+if($responses != ""){
+    $respArr = unserialize($responses);
+    $respArr[$questionid] = $answer;
+    $respSer = serialize($respArr);
+}
+else{
+    $respArr = array();
+    $respArr[$questionid] = $answer;
+    $respSer = serialize($respArr);
 }
 
-$new = "". $questionid . ", ". $answer."\n";
-array_push($rewrite, $new);
-//$serialized = serialize($rewrite);
-file_put_contents($storage, $rewrite);
-*/
-   
+
+// Inserts the data
+if($stmt = $writeconn->prepare("UPDATE teams SET responses=? WHERE teamid=?")){
+    if($stmt->bind_param("si", $respSer, $teamid)){
+        if(!$stmt->execute()){
+            die("ERR: Issue executing prepared statement: " . mysqli_error($writeconn));
+        }else{
+            // Closes the SQL connection
+            $writeconn->close();
+            
+            // Back to sending page
+            header('Location: ../scenario.php?number=' . $scenarioid);
+        }
+    }else{
+        die("ERR: Issue binding prepared statement: " . mysqli_error($writeconn));
+    }
+}else{
+    die("ERR: Issue preparing statement: " . mysqli_error($writeconn));
+}
+
+// Closes the SQL connection
+$writeconn->close();
 ?>

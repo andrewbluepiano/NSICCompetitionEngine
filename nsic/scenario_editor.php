@@ -1,10 +1,32 @@
 <?php
 // Author: Andrew Afonso
-session_start();
 
+// Session setup & admin verification
+session_start();
 include_once("config/session_validate.php");
 include_once("config/admin_validate.php");
 
+// Creates a read only SQL connection object
+require_once('config/readconnect.php');
+
+// POST var
+$scenarionum = filter_input(INPUT_POST, 'scenario');
+
+// Queried var's
+// TODO: Make all these prepared statements
+$getquestions = "SELECT questionid, questionnum, question, value, submission FROM questions WHERE scenarionum='$scenarionum' ORDER BY questionnum ASC;";
+$getscenario = "SELECT title, fullBonus, brief, hidden FROM scenario WHERE scenarionum='$scenarionum';";
+$gettasks = "SELECT tasknum, task, points FROM tasks WHERE scenarionum='$scenarionum' ORDER BY tasknum ASC;";
+$getgraded = "SELECT service, points FROM gradedsvc WHERE scenarionum='$scenarionum';";
+
+$questions=$readconn->query($getquestions);
+$scenario=$readconn->query($getscenario);
+$tasks=$readconn->query($gettasks);
+$services=$readconn->query($getgraded);
+$scenariodeets = mysqli_fetch_assoc($scenario);
+
+// Close the SQL connection, so it cant be used again.
+//$readconn->close();
 ?>
 <!doctype html>
 <html>
@@ -12,35 +34,20 @@ include_once("config/admin_validate.php");
 		<?php include("config/head.php"); ?>
 	</head>
 	<body>
-		<?php 
-		require_once('config/readconnect.php');
-
-			$scenarionum = $_REQUEST['scenarionumber'];
-			$getquestions = "SELECT questionid, questionnum, question, value, submission FROM questions WHERE scenarionum='$scenarionum' ORDER BY questionnum ASC;";
-			$getscenario = "SELECT title, fullBonus, brief, hidden FROM scenario WHERE scenarionum='$scenarionum';";
-			$gettasks = "SELECT tasknum, task, points FROM tasks WHERE scenarionum='$scenarionum' ORDER BY tasknum ASC;";
-			$getgraded = "SELECT service, points FROM gradedsvc WHERE scenarionum='$scenarionum';";
-			
-			$questions=$readconn->query($getquestions); 
-			$scenario=$readconn->query($getscenario); 
-			$tasks=$readconn->query($gettasks); 
-			$services=$readconn->query($getgraded); 
-			$scenariodeets = mysqli_fetch_assoc($scenario);
-			$headtext = "<h1>Scenario ". $scenarionum . ": " .$scenariodeets['title'] ."</h1>";
-			//$readconn->close();
-
-		?>
-			<?php include("config/header.php"); ?>
-		<section class="wrap text editor">
-		<form method="post" action="config/editscenario.php?scenarionum=<?php echo $scenarionum; ?>">
-			
+		<?php $headtext = "<h1>Scenario ". $scenarionum . ": " .$scenariodeets['title'] ."</h1>"; include("config/header.php"); ?>
+		
+        <section class="wrap text editor">
+		<form method="post" action="config/scenario_edit.php">
+			<input type="hidden" name="scenarioNum" value=<?php echo $scenarionum; ?> />
+            
 			<div class="center">
-				<p>Enter new title here for title change: <input class="softfield" type="text" name="scenarioname" placeholder="Enter Scenario Name"></p>
+				<h4>New Title: <input class="softfield" type="text" name="scenarioname" placeholder="Enter Scenario Name"></h4>
 			</div>
 			
 			<section class="two_columns">
 				<div class="col">
-					<p>Current Brief: <br> <?php echo $scenariodeets['brief']; ?></p>
+					<h4>Current Brief:</h4>
+                    <p><?php echo $scenariodeets['brief']; ?></p>
 				</div>
 			
 				<div class="col">

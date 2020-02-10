@@ -15,7 +15,7 @@ include_once("config/session_validate.php");
 		require_once('config/readconnect.php');
 
 			$scenarionum = $_REQUEST['number'];
-			$username = $_SESSION['username']; 
+			$username = $_SESSION['username'];
 			$getquestions = "SELECT questionid, questionnum, question, value, submission FROM questions WHERE scenarionum='$scenarionum' ORDER BY questionnum ASC;";
 			$getscenario = "SELECT title, fullBonus, brief FROM scenario WHERE scenarionum='$scenarionum';";
 			$getteamid = mysqli_query($readconn, "SELECT teamid FROM users WHERE compuser='$username';");
@@ -79,11 +79,15 @@ include_once("config/session_validate.php");
 						echo "<p>". $quest['question'] ."</p>";
 					}
 					if($quest['submission']==1){
-						echo "<form method=\"post\" action=\"config/submitquestion.php?team=". $teamid['teamid'] ."&question=". $quest['questionid'] ."&scenario=". $scenarionum ."\">
-						". $quest['question'] ."
-						<br><span><input class=\"answerfield\" type=\"text\" name=\"answer\" placeholder=\"Answer question here\">
-						<input class=\"softbtn\" type=\"submit\" name=\"answerbtn\" value=\"Submit Answer\"></span>
-						</form>";
+//						echo "<form method=\"post\" action=\"config/submitquestion.php?team=". $teamid['teamid'] ."&question=". $quest['questionid'] ."&scenario=". $scenarionum ."\">". $quest['question'] ."<br><span><input class=\"answerfield\" type=\"text\" name=\"answer\" placeholder=\"Answer question here\"><input class=\"softbtn\" type=\"submit\" name=\"answerbtn\" value=\"Submit Answer\"></span></form>";
+                        echo '<form method="post" action="config/submitquestion.php">';
+                        echo $quest['question'];
+                        echo "<br><span>";
+                        echo '<input class="answerfield" type="text" name="answer" placeholder="Answer question here">';
+                        echo '<input type="hidden" name="question" value="' . $quest['questionid'] . '" />';
+                        echo '<input type="hidden" name="scenario" value="' . $scenarionum . '" />';
+                        echo '<input class="softbtn" type="submit" name="answerbtn" value="Submit Answer">';
+                        echo "</span></form>";
 					}
 				} 
 			?>

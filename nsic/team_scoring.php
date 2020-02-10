@@ -1,10 +1,15 @@
 <?php
 // Author: Andrew Afonso
-session_start();
+// Scoring page. Loads for the passed team.
 
+// Session setup & admin verification
+session_start();
 include_once("config/session_validate.php");
 include_once("config/admin_validate.php");
 
+// POST vars
+$teamid = filter_input(INPUT_POST, 'teamselect');
+$scenarionum = filter_input(INPUT_POST, 'scenarioscore');
 ?>
 <!doctype html>
 <html>
@@ -15,8 +20,8 @@ include_once("config/admin_validate.php");
 		<?php 
 		require_once('config/readconnect.php');
 
-			$teamid = $_REQUEST['team'];
-			$scenarionum = $_REQUEST['scenario'];
+//			$teamid = $_REQUEST['team'];
+//			$scenarionum = $_REQUEST['scenario'];
 			/*echo "<p>". $teamid ."</p>";
 			echo "<p>". $scenarionum ."</p>";*/
 			$getquestions = "SELECT questionid, questionnum, question, value, submission FROM questions WHERE scenarionum='$scenarionum' ORDER BY questionnum ASC;";

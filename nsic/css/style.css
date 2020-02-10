@@ -67,6 +67,19 @@ fieldset {
     border: none;
 }
 
+table {
+    line-height: 25px;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
 /* Nav Stuff */
 #NSICNav {
 	margin: 0;

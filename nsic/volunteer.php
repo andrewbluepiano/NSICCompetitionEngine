@@ -62,7 +62,7 @@
                 <label>Whenever <input type="checkbox" name="vol_days[Whenever]" value="1" />
                 <br>
                 
-                <input class="btn_one" type="submit" value="Submit">
+                <input class="btn_one" type="submit" value="Sign up">
                 
             </fieldset>
         </form>

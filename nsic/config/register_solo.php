@@ -27,6 +27,7 @@ $writeconn->close();
 // JS That uses an iFrame to load the getCal file that downloads the calendar file.
 echo '<iframe id="my_iframe" style="display:none;"></iframe>';
 echo '<script>';
+echo 'alert("You will now be redirected to pay the registration fee.");';
 echo "document.getElementById('my_iframe').src = \"getCal.php\";";
 echo '</script>';
 

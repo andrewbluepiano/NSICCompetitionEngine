@@ -2,7 +2,7 @@
 // Author: Andrew Afonso
 // Backend for volunteer registration
 
-// Provides the SQL connection with write permissions to NSIC DB.
+// Provides the SQL connection object with write permissions to NSIC DB.
 require_once('writeconnect.php');
 
 // Post vars

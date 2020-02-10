@@ -1,28 +1,32 @@
 <?php
 // Author: Andrew Afonso
-// Disabled due to insecurities
 
-/*
+// Session setup & admin verification
+session_start();
+include_once("config/session_validate.php");
+include_once("config/admin_validate.php");
+
+// Provides the SQL connection object with write permissions to NSIC DB.
 require_once('writeconnect.php');
+
+// POST vars
 $scenarioname = filter_input(INPUT_POST, 'scenarioname');
-$scenarionum = $_REQUEST['scenarionum'];
+$scenarionum = filter_input(INPUT_POST, 'scenarioNum');
 $hide = filter_input(INPUT_POST, 'hidden');
 $bonus = filter_input(INPUT_POST, 'fullbonus');
 $brief = filter_input(INPUT_POST, 'brief');
 $tasktodelete = filter_input(INPUT_POST, 'tasksel');
 $taskpoints = filter_input(INPUT_POST, 'taskpoints');
 $newtasknum = filter_input(INPUT_POST, 'taskindnum');
-$newtask = $_REQUEST['taskcontent'];
+$newtask = filter_input(INPUT_POST, 'taskcontent');
 $svctodelete = filter_input(INPUT_POST, 'svcsel');
-$newsvc = $_REQUEST['newsvc'];
+$newsvc = filter_input(INPUT_POST, 'newsvc');
 $questtoupdate = filter_input(INPUT_POST, 'questtoupdate');
 $newquestnum = filter_input(INPUT_POST, 'newquestnum');
 $submission = filter_input(INPUT_POST, 'submission');
 $points = filter_input(INPUT_POST, 'pointvalue');
 $svcpoints = filter_input(INPUT_POST, 'svcpoints');
 $questiontext = filter_input(INPUT_POST, 'questiontext');
-
-echo "<meta http-equiv=\"Refresh\" content=\"0; url=/nsic/scenario_editor.php?scenarionumber=". $scenarionum ."\">";
 
 if(isset($_POST['scenarioedit'])){
     if(isset($hide)){
@@ -152,5 +156,5 @@ if(isset($_POST['deletequest'])){
         ". $writeconn->error."</p>";
     }
 }
-*/
+
 ?>

@@ -1,10 +1,13 @@
 <?php
 // Author: Andrew Afonso
-session_start();
 
+// Session setup & admin verification
+session_start();
 include_once("config/session_validate.php");
 include_once("config/admin_validate.php");
 
+// Creates a read only SQL connection object
+require_once('config/readconnect.php');
 ?>
 <!doctype html>
 <html>
@@ -13,7 +16,7 @@ include_once("config/admin_validate.php");
 		<meta name="description" content="NSIC 2020 administration page" />
         <?php include("config/head.php"); ?>
 	</head>
-	<body>
+	<body onload="oneTable()">
 		<!-- Header -->
 		<?php $headtext = "<h1>NSIC 2020 Admin</h1>"; 
 		include("config/header.php"); ?>
@@ -22,30 +25,7 @@ include_once("config/admin_validate.php");
 			<article class="text">
                 <ul class="noul">
                     <li>
-                        <form method="post" action="config/scoreadmin.php">
-                            <div class="holder">Manually set score</div>
-                            
-                            <div class="holder">
-                                <select class="softselect" name="teamset">
-                                    <?php
-                                    require_once('config/readconnect.php');
-                                    $sql = mysqli_query($readconn, "SELECT tname, teamid FROM teams");
-                                    while ($row = $sql->fetch_assoc()){
-                                        echo "<option value=\"". $row['teamid']."\">" . $row['tname'] . "</option>";
-                                    }
-                                    ?>
-                                </select>
-                                <input class="softfield" type="number" name="manscore" placeholder="Enter Score">
-                            </div>
-                            
-                            <div class="holder">
-                                <input class="softbtn" type="submit" name="setscore" value="Set Score">
-                            </div>
-                        </form>
-                    </li>
-                    
-                    <li>
-                        <form method="post" action="config/loadteamscoring.php">
+                        <form method="post" action="team_scoring.php">
                             <div class="holder">
                                 Score Team:
                                 <select class="softselect" name="teamselect">
@@ -78,7 +58,7 @@ include_once("config/admin_validate.php");
                     </li>
                     
                     <li>
-                        <form method="post" action="config/addcontent.php">
+                        <form method="post" action="config/scenario_new.php">
                             <div class="holder">Create new Scenario</div>
                             
                             <div class="holder">
@@ -92,7 +72,7 @@ include_once("config/admin_validate.php");
                     </li>
                         
                     <li>
-                        <form method="post" action="config/loadscenario.php">
+                        <form method="post" action="scenario_editor.php">
                             <div class="holder">Select Scenario to Edit</div>
                             
                             <div class="holder">
@@ -113,8 +93,88 @@ include_once("config/admin_validate.php");
                         </form>
                     </li>
                     
+                    <hr>
+                    
+                    <!-- Team management section -->
                     <li>
-                        <form method="post" action="config/solomanagement.php">
+                        <form method="post" action="config/teammanagement.php">
+                            <fieldset>
+                                <legend>Team Info</legend>
+                                <button type="button" style="padding:5px" onclick="teamDetails()">Team Details</button>
+                                <button type="button" style="padding:5px" onclick="teamMembers()">Members</button>
+                                
+                                <script>
+                                function oneTable() {
+                                  var memberTab = document.getElementById("teamMemberTable");
+                                  memberTab.style.display = "none";
+                                }
+                                
+                                function teamMembers() {
+                                  var memberTab = document.getElementById("teamMemberTable");
+                                  var detailsTab = document.getElementById("teamDetailsTable");
+                                  detailsTab.style.display = "none";
+                                  memberTab.style.display = "table";
+                                }
+                                
+                                function teamDetails() {
+                                  var memberTab = document.getElementById("teamMemberTable");
+                                  var detailsTab = document.getElementById("teamDetailsTable");
+                                  memberTab.style.display = "none";
+                                  detailsTab.style.display = "table";
+                                }
+                                </script>
+                                
+                                <table style="width:100%" id="teamMemberTable">
+                                    <tr class="normLines">
+                                        <th>Team Name</th>
+                                        <th colspan="5">Members</th>
+                                    </tr>
+                                    
+                                    <?php
+                                    // Query to return teamid, and team name (tname).
+                                    $sqlteams = mysqli_query($readconn, "SELECT teamid, tname, email FROM teams");
+                                    
+                                    while($oneentry = $sqlteams->fetch_assoc()){
+                                        echo "<tr><td><a href=\"mailto:" . $oneentry['email'] . "\">" . $oneentry['tname'] . "</a></td>";
+                                        
+                                        $sqlmembers = mysqli_query($readconn, "SELECT fname, lname FROM participants WHERE teamid=" . $oneentry['teamid'] . " ORDER BY lname ASC");
+                                        
+                                        while($auser = $sqlmembers->fetch_assoc()){
+                                            echo "<td>". $auser['fname']. " " . $auser['lname'][0] . " </td>";
+                                        }
+
+                                        echo "</tr>";
+                                    }
+                                    ?>
+                                </table>
+                                
+                                <table style="width:100%" id="teamDetailsTable">
+                                    <tr class="normLines">
+                                        <th>Team Name</th>
+                                        <th>School</th>
+                                        <th>Interpreter</th>
+                                        <th>Dietary</th>
+                                        <th>Comments</th>
+                                    </tr>
+                                    
+                                    <?php
+                                    // Query to return teamid, and team name (tname).
+                                    $sqlteams = mysqli_query($readconn, "SELECT tname, school, diet, asl, addcomments, email FROM teams");
+                                    
+                                    while($ateam = $sqlteams->fetch_assoc()){
+                                        echo "<tr><td><a href=\"mailto:" . $ateam['email'] . "\">" . $ateam['tname'] . "</a></td><td>" . $ateam['school'] . "</td><td>" . $ateam['asl'] . "</td><td>" . $ateam['diet'] . "</td><td>" . $ateam['addcomments'] . "</td></tr>";
+                                    }
+                                    ?>
+                                </table>
+                                
+                            </fieldset>
+                        </form>
+                    </li>
+                    
+                    <hr>
+                    
+                    <li>
+                        <form method="post" action="config/solo_management.php">
                             <fieldset>
                                 <legend>Solo Participant Management</legend>
                                 <table style="width:100%">
@@ -127,9 +187,9 @@ include_once("config/admin_validate.php");
                                     </tr>
                                     
                                     <?php
-                                        $sql = mysqli_query($readconn, "SELECT fname, lname, networkingskill, sysadminskill, addcomments, uid FROM solo_unplaced");
+                                        $sql = mysqli_query($readconn, "SELECT fname, lname, networkingskill, sysadminskill, addcomments, uid, email FROM solo_unplaced");
                                         while ($rowone = $sql->fetch_assoc()){
-                                            echo "<tr><td>". $rowone['fname']. " " . $rowone['lname'] . " </td><td> " . $rowone['networkingskill'] . "</td><td>" . $rowone['sysadminskill'] . "</td><td>" . $rowone['addcomments'] . "</td><td><select class=\"softselect\" name=\"teamset[]\"><option value=\"unset\">No Team</option>";
+                                            echo "<tr><td><a href=\"mailto:" . $rowone['email'] . "\">" . $rowone['fname']. " " . $rowone['lname'] . "</a></td><td>" . $rowone['networkingskill'] . "</td><td>" . $rowone['sysadminskill'] . "</td><td>" . $rowone['addcomments'] . "</td><td><select class=\"softselect\" name=\"teamset[]\"><option value=\"unset\">No Team</option>";
                                             $sqlteams = mysqli_query($readconn, "SELECT tname, teamid FROM teams");
                                             while ($grow = $sqlteams->fetch_assoc()){
                                                 echo "<option value=\"". $grow['teamid'] ."|" . $rowone['uid'] ."\">" . $grow['tname'] . "</option>";
@@ -145,17 +205,62 @@ include_once("config/admin_validate.php");
                         </form>
                     </li>
                     
+                    <hr>
+                    
                     <li>
-                        <form method="post" action="config/teammanagement.php">
-                            <fieldset>
-                                <legend>Team Management</legend>
-                                <?php
-                                    $sqlone = mysqli_query($readconn, "SELECT title, scenarionum FROM scenario");
+                        <table style="width:100%">
+                            <caption>Volunteers</caption>
                             
-                                ?>
-                            </fieldset>
-                        </form>
+                            <tr class="normLines">
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Areas</th>
+                                <th>Days</th>
+                                <th>Additional<br>Comments</th>
+                            </tr>
+                            
+                            <?php
+                                $sqlVolunt = mysqli_query($readconn, "SELECT fname, lname, email, areas, days, addcomments FROM volunteers");
+                                
+                                while ($aVolunt = $sqlVolunt->fetch_assoc()){
+                                    $areasVol = array_keys(unserialize($aVolunt['areas']), "1");
+                                    $daysVol = array_keys(unserialize($aVolunt['days']), "1");
+                                    
+                                    echo "<tr><td>". $aVolunt['fname'] . " " . $aVolunt['lname'] . "</td><td><a href=\"mailto:" . $aVolunt['email'] . "\">" . $aVolunt['email'] . "</a></td><td>";
+                                    
+                                    
+                                    foreach($areasVol as $val){
+                                        if($val != end($areasVol)){
+                                            echo $val . ", ";
+                                        }
+                                        else{
+                                            echo $val;
+                                        }
+                                    }
+                                    
+                                    echo "</td><td>";
+                                    
+                                    foreach($daysVol as $dayVol){
+                                        if($dayVol != "Whenever"){
+                                            echo substr($dayVol, 0, 3);
+                                        }
+                                        else{
+                                            echo $dayVol;
+                                        }
+                                        
+                                        if($dayVol != end($daysVol)){
+                                            echo ", ";
+                                        }
+                                    }
+                                    
+                                    echo "<td>" . $aVolunt['addcomments'] . "</td></tr>";
+                                }
+                        
+                            ?>
+                        </table>
                     </li>
+                    
+                    
                 </ul>
 			</article>
 		</section>

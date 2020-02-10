@@ -1,11 +1,13 @@
 <?php
 // Author: Andrew Afonso
+// Login handler for NSIC engine
 
 // Parameters from form
 $username = $_POST['username'];
 $passwd = $_POST['password'];
 
 require_once('readconnect.php');
+require_once('nsic_vars.php');
 
 // Uses bound statements
 if($stmt = $readconn->prepare("SELECT * FROM users WHERE compuser=?")){
@@ -23,12 +25,21 @@ if($stmt = $readconn->prepare("SELECT * FROM users WHERE compuser=?")){
             }
             
             if($row['comppass'] === md5($passwd) && $row['enabled'] === 1){
-                // Successful Login, Set session variables
+                // Successful Login
+                
+                // Clear any existing session info
                 session_unset();
                 session_destroy();
                 $sess_id = session_start();
                 session_regenerate_id(true);
+                
+                // Set session variables
                 $_SESSION['username'] = $_POST['username'];
+                // To differentiate between sessions if the engine is run from a subdirectory on a larger site.
+                $_SESSION['type'] = $typeVar;
+                // Set a teamID session variable to track across the session
+                $_SESSION['teamID'] = $row['teamid'];
+                // Set login info to track session validity.
                 $_SESSION['login_info'] = ['start_time' => time(),'ip' => $_SERVER['REMOTE_ADDR'],'sess_valid' => true, 'isAdmin' => $row['trust']];
                 // Go to secured page
                 header('Location: ../scoreboard');
