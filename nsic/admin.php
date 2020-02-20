@@ -1,5 +1,10 @@
 <?php
 // Author: Andrew Afonso
+// Description: NSIC Administration main page
+
+// Overall Status: Still partially draft
+// Security: Still references unsecure drafts, no inline flaws
+// Styling: Unstyled
 
 // Session setup & admin verification
 session_start();
@@ -14,6 +19,7 @@ require_once('config/readconnect.php');
 	<head>
 		<title>NSIC 2020 Administration</title>
 		<meta name="description" content="NSIC 2020 administration page" />
+		<meta name="author" content="Andrew Afonso" />
         <?php include("config/head.php"); ?>
 	</head>
 	<body onload="oneTable()">
@@ -196,7 +202,6 @@ require_once('config/readconnect.php');
                                             }
                                             echo "</select></td></tr>";
                                         }
-                                
                                     ?>
                                 </table>
                             
@@ -252,15 +257,11 @@ require_once('config/readconnect.php');
                                             echo ", ";
                                         }
                                     }
-                                    
                                     echo "<td>" . $aVolunt['addcomments'] . "</td></tr>";
                                 }
-                        
                             ?>
                         </table>
                     </li>
-                    
-                    
                 </ul>
 			</article>
 		</section>
