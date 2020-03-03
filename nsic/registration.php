@@ -1,3 +1,11 @@
+<?php
+// Author: Andrew Afonso
+// Description: NSIC competitor registration page.
+
+// Overall Status: Likely done.
+// Security: User data submission page, so security rests in the backend for this.
+// Styling: Basic styling done.
+?>
 <!doctype html>
 <html>
 	<head>
@@ -35,7 +43,11 @@
         <?php include("config/head.php"); ?>
 	</head>
 	<body>
-	<?php $headtext = "<h1>NSIC 2020 Registration</h1>"; include("config/header.php"); ?>
+	<?php
+		// Include header & set page heading
+		$headtext = "<h1>NSIC 2020 Registration</h1>";
+		include("config/header.php");
+	?>
 	
 	<section class="wrap text registration">
         <ul class="noul normLines">

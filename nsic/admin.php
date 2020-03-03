@@ -2,7 +2,7 @@
 // Author: Andrew Afonso
 // Description: NSIC Administration main page
 
-// Overall Status: Still partially draft
+// Overall Status: Still draft
 // Security: Still references unsecure drafts, no inline flaws
 // Styling: Unstyled
 
@@ -23,9 +23,11 @@ require_once('config/readconnect.php');
         <?php include("config/head.php"); ?>
 	</head>
 	<body onload="oneTable()">
-		<!-- Header -->
-		<?php $headtext = "<h1>NSIC 2020 Admin</h1>"; 
-		include("config/header.php"); ?>
+		<?php
+			// Include header & set page heading
+			$headtext = "<h1>NSIC 2020 Admin</h1>";
+			include("config/header.php");
+		?>
 	
 		<section class="wrap center admin">
 			<article class="text">

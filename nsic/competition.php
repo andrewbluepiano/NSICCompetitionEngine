@@ -2,7 +2,7 @@
 // Author: Andrew Afonso
 // Description: Competition main page. Lists enabled scenarios.
 
-// Overall Status: Functionally fine, but still draft. 
+// Overall Status: Functionally fine, but still draft. Needs refresh enabled
 // Security: No inline vulns seen
 // Styling: Unstyled
 
@@ -21,6 +21,7 @@ include_once("config/session_validate.php");
 </head>
 <body>
 <?php
+	// Include header & set page heading
 	$headtext = "<h1>NSIC 2020 Competition</h1>";
 	include("config/header.php");
 ?>
