@@ -37,6 +37,7 @@ session_start();
                 }
                 echo "<a class=\"NSICLogout\" href=\"logout\"><li>Logout</li></a>";
             }
+            
             ?>
 		</ul>
   </section>

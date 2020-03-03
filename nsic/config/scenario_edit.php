@@ -3,8 +3,8 @@
 
 // Session setup & admin verification
 session_start();
-include_once("config/session_validate.php");
-include_once("config/admin_validate.php");
+include_once("session_validate.php");
+include_once("admin_validate.php");
 
 // Provides the SQL connection object with write permissions to NSIC DB.
 require_once('writeconnect.php');

@@ -4,8 +4,8 @@
 
 // Session setup & admin verification
 session_start();
-include_once("config/session_validate.php");
-include_once("config/admin_validate.php");
+include_once("session_validate.php");
+include_once("admin_validate.php");
 
 // POST var
 $newscenarioname = filter_input(INPUT_POST, 'scenarioname');
