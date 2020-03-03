@@ -38,6 +38,10 @@ a:active {
 	color: green;
 }
 
+.inline {
+	display: inline;
+}
+
 h1 {
 	font-size: 30px;
 }
@@ -127,6 +131,15 @@ tr:nth-child(even) {
 	z-index: 1;
 	-webkit-user-select: none;
 	user-select: none;
+}
+
+.trans-orange{
+	background: rgba(245, 133, 34, 0.41);
+}
+
+.rounded-containers {
+	padding: 20px 50px ;
+	border-radius: 60px;
 }
 
 #NSICHamburgToggle input {
